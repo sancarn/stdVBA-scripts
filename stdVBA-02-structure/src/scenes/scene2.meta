@@ -1,0 +1,42 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "revealDependencies",
+      "targetTime": 3.0551245258866495
+    },
+    {
+      "name": "beforeRevealStdICallable",
+      "targetTime": 5.872067374213467
+    },
+    {
+      "name": "afterRevealStdICallable",
+      "targetTime": 9.915490679303058
+    },
+    {
+      "name": "beforeRevealImplementors",
+      "targetTime": 11.064122130932951
+    },
+    {
+      "name": "afterRevealImplementors",
+      "targetTime": 16.49022724153242
+    },
+    {
+      "name": "calloutGreenBlue",
+      "targetTime": 24.685713946445937
+    },
+    {
+      "name": "calloutStdICallable",
+      "targetTime": 27.687642498982175
+    },
+    {
+      "name": "removeNonFactories",
+      "targetTime": 31.949600286310215
+    },
+    {
+      "name": "afterRemoveNonFactories",
+      "targetTime": 37.201065833917085
+    }
+  ],
+  "seed": 2438475210
+}

@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Reveal JS presentation</title>
+
+  <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+  <meta name="author" content="Hakim El Hattab">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reset.css">
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/reveal.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!-- highlight Theme -->
+  
+  <link rel="stylesheet" href="libs/highlight.js/11.3.1/styles/monokai.min.css">
+  
+	
+		
+	<link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/chalkboard/style.css">
+	
+	
+	
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/plugin/customcontrols/style.css">
+  
+	
+
+
+
+  <!-- Revealjs Theme -->
+  
+  <link rel="stylesheet" href="libs/reveal.js/4.3.1/theme/black.css" id="theme">
+  
+  
+
+  <link rel="stylesheet" href="libs/styles/tasklist.css">
+	<link rel="stylesheet" href="libs/styles/iota.css">
+	<link rel="stylesheet" href="libs/styles/layout.css">
+
+
+  <!-- Revealjs Theme -->
+  
+
+   <!-- css list -->
+	
+
+   
+
+</head>
+
+<body>
+
+   
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+
+
+    
+        <section data-transition="fade" data-background-transition="fade">
+            
+            <!-- 
+Demo doc:
+https://raw.githubusercontent.com/evilz/vscode-reveal/master/samples/demo.md 
+-->
+<!-- .slide: data-transition="fade" data-background-transition="fade" -->
+<section>
+  <h2> Extracting Data from Spreadsheets</h2>
+</section>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-auto-animate>
+  <img src="./resources/sweet-1.png" width="100%">
+</section>
+<!-- In many professional settings, data is king. -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <style>
+    .growc {
+        width: 0;
+        transition: width;
+    }
+    .growc.visible {
+        width: 30%;
+    }
+    .fragment > img {
+      max-width:100%;
+      max-height:100%;
+    }
+    
+</style>
+<section data-auto-animate>
+  <div style="display:flex; justify-content:center; align-items:center;">
+    <div class="no-margin" style="width: 30%">
+      <img src="./resources/sweet-1.png" width="100%" class="no-margin">
+    </div>
+    <div class="fragment growc">
+      <img src="./resources/sweet-2.png" width="100%">
+    </div>
+    <div class="fragment growc">
+      <img src="./resources/sweet-3.png" width="100%">
+    </div>
+  </div>
+</section>
+<!-- And often, this data is scattered across multiple different tabs... -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <style>
+    .growc {
+        width: 0;
+        transition: width;
+    }
+    .growc.visible {
+        width: 30%;
+    }
+    .fragment > img {
+      max-width:95%;
+      max-height:95%;
+    }
+    
+</style>
+<section>
+  <div style="display:flex; justify-content:center; align-items:center;">
+    <div class="no-margin" style="width: 30%">
+      <img src="./resources/file-spreadsheet.png" width="100%" class="no-margin" data-id="X">
+    </div>
+    <div class="fragment growc">
+      <img src="./resources/file-spreadsheet.png" width="100%" data-id="Y">
+    </div>
+    <div class="fragment growc">
+      <img src="./resources/file-spreadsheet.png" width="100%" data-id="Z">
+    </div>
+  </div>
+</section>
+<!-- of multiple different spreadsheets... -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-auto-animate>
+  <div style="display:flex; justify-content:center; align-items:center;">
+    <img src="./resources/file-spreadsheet.png" width="30%" class="no-margin" id="X">
+    <img src="./resources/file-spreadsheet.png" width="30%" class="no-margin" id="Y">
+    <img src="./resources/file-spreadsheet.png" width="30%" class="no-margin" id="Z">
+  </div>
+</section>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-auto-animate>
+  <table>
+    <tr height="300px">
+      <td>
+        <h4>File</h4>
+      </td>
+      <td>
+        <img src="./resources/file-spreadsheet.png" width="100%" data-id="X">
+      </td>
+      <td>
+        <img src="./resources/file-spreadsheet.png" width="100%" data-id="Y">
+      </td>
+      <td>
+        <img src="./resources/file-spreadsheet.png" width="100%" data-id="Z">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h4>Version</h4>
+      </td>
+      <td style="text-align: center">
+        v1
+      </td>
+      <td style="text-align: center">
+        v1
+      </td>
+      <td style="text-align: center">
+        v2
+      </td>
+    </tr>
+  </table>
+</section>
+<!-- across multiple different versions... -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <section data-transition="fade">
+  <img src="./resources/file-folder.png" width="30%" data-id="X">
+  <img src="./resources/file-folder.png" width="30%" data-id="Y">
+  <img src="./resources/file-folder.png" width="30%" data-id="Z">
+</section>
+<!-- across many different directories... -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>How?</h1>
+<!-- The challenge? How can we write a tool which will be able to handle data extraction from all this data? -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <img src="./resources/program-power-query.webp"/>
+<!-- Many people's first go-to is PowerQuery -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h2>Problem</h2>
+<video src="./resources/powerquery-data.mp4" controls autoplay />
+<!--
+  You'll run into an issue because you'll need to handle this awful datastructure. I have seen some people clear this but it can be quite mind bending, and you'll have to do a different transformation for each version. Surely there's an easier way?!
+-->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>Solution:</h1>
+<h2>VBA</h2>
+<!-- The solution is using VBA -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Initial solution</p>
+<img src="./resources/create-paths-table.png"/>
+<!-- A naive solution might look like this. We create a paths table, and ensure it's name is set correctly -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <img src="./resources/ensure-sheet-named-correctly.png"/>
+<!-- We also ensure the sheet itself is named `shPaths` -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p>Initial solution</p>
+<pre><code class="language-vb">Dim results as Collection
+Dim lo as ListObject: set lo = shPaths.ListObjects(&quot;Paths&quot;)
+
+Dim vPaths: vPaths = lo.Range.Value
+Dim i as long
+For i = 2 to Ubound(vPaths,1)
+  With Workbooks.open(vPaths(i,1))
+    Dim sh as Worksheet
+    For each sh in .worksheets
+      With sh
+        results.add Array(.[E8], .[E9], .[N8], .[N11])
+      End with
+    next
+    .Close false
+  End With
+next
+</code></pre>
+<!-- Then we add the following code -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <pre><code data-line-numbers="|1-3|5,6,16|7,14|8,9,13|10-12|15" class="language-vb">Dim results as Collection
+Dim lo as ListObject: set lo = shPaths.ListObjects(&quot;Paths&quot;)
+Dim vPaths: vPaths = lo.Range.Value
+
+Dim i as long
+For i = 2 to Ubound(vPaths,1)
+  With Workbooks.open(vPaths(i,1))
+    Dim sh as Worksheet
+    For each sh in .worksheets
+      With sh
+        results.add Array(.[E8], .[E9], .[N8], .[N11])
+      End with
+    next
+  End With
+  .Close false
+next
+</code></pre>
+<!-- We get the file paths from the recently created table. -->
+<!-- We loop over each workbook path. -->
+<!-- Open it. -->
+<!-- Loop through each sheet. -->
+<!-- And assign results to our array, before finally -->
+<!-- closing the workbook. -->
+<!-- This currently doesn't handle different versions of the workbook/sheet however, so...  -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <pre><code data-line-numbers="10|24-31|11-18" class="language-vb">Dim results as Collection
+Dim lo as ListObject: set lo = shPaths.ListObjects(&quot;Paths&quot;)
+Dim vPaths: vPaths = lo.Range.Value
+
+Dim i as long
+For i = 2 to Ubound(vPaths,1)
+  With Workbooks.open(vPaths(i,1))
+    Dim sh as Worksheet
+    For each sh in .worksheets
+      Dim iVersion as Long: iVersion = getVersion(sh)
+      With sh
+        select case iVersion
+          case 1
+            results.add Array(.[E8], .[E9], .[E11]/.[E12], .[N8], .[N11])
+          case 2
+            results.add Array(.[E9], .[E10], .[E10]/.[E11], .[D17], .[D20])
+        end select
+      End With
+    next
+    .Close false
+  End With
+next
+
+Function getVersion(ByVal sh as Worksheet) as Long
+  select case true
+    case [I4] = &quot;Version: 1.0.0&quot;
+      getVersion = 1
+    case [I4] = &quot;Version: 1.1.0&quot;
+      getVersion = 2
+  end select
+End Function
+</code></pre>
+<!-- We could obtain the version using a function named `getVersion` -->
+<!-- Of which the definition would check certain cell references determining the version number -->
+<!-- And then perform a different extraction algorithm based on the version number identified -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1>TODO:</h1>
+<!-- 
+Now this is a fairly trivial VBA script and with 29 lines of code it will likely suffice for most VBA users. There are still several issues:
+* We aren't printing the data anywhere
+* We currently don't handle corrupt workbooks
+* We currently don't provide user feedback
+* Users will be asked to update links
+* Users will see a strobing as extracts run
+but these can be added with relative ease.
+
+-->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1 style="font-size: 1000%">🤔</h1>
+<!-- But what about Excel users. Users who are intimidated by VBA? Can we turn this into a tool which even they can use? Many users are familiar with formulas, so it's not like there's a massive barrier. -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h1 style="font-size: 1000%">🖼️</h1>
+<!-- If we give them a UI, can they do it for themselves? Finally wouldn't it be so much better to have a generic tool? It was for this reason I made a more generic version. TODO: this ok? -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <table>
+<thead>
+<tr>
+<th>Paths</th>
+<th>Processed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C:.…\test.xlsx</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>C:.…\test.xlsx</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<!-- First off we are going to create 2 new tables on top of our existing paths table -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Processed</th>
+<th>Other rules …</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td>[I4] = “Version: 1.0.0”</td>
+<td>…</td>
+</tr>
+<tr>
+<td>1.1.0</td>
+<td>[I4] = “Version: 1.1.0”</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<!-- One will be the categories table, in charge of categorising sheets processed. This is analagous to our "getVersion" function earlier. Users can supply as many rules as they like to distinguish sheets from each other -->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <div style="font-size: 30px" class="block">
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Name</th>
+<th>Manufacturer</th>
+<th>Cal per g</th>
+<th>Carb</th>
+<th>Fat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td>[E8]</td>
+<td>[E9]</td>
+<td>[E11]/[E12]</td>
+<td>[N8]</td>
+<td>[N11]</td>
+</tr>
+<tr>
+<td>1.1.0</td>
+<td>[E9]</td>
+<td>[E10]</td>
+<td>[E10]/[E11]</td>
+<td>[D17]</td>
+<td>[D20]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- And a rules table, which maps Category, to columns and how to extract the data -->
+
+            </section>
+    
+
+
+
+    
+        <section data-transition="fade">
+            
+            <!-- .slide: data-transition="fade" -->
+<pre style="all:unset;"><div><img class="mermaid" src="https://kroki.io/mermaid/svg/eNp1kM2qwkAMhfc-xSwstaAvoNJNdSEIgi5cp9PcGp22MBOhUvvuDjP9UbnucnJO8oUEQUMl8VI0IV-wwHAZZqBvYdsGwUQqMGZDkGsoJkLUOgHGvNKERiwWsW3soUgz2NbOPd7V_0YvnGc489paQ22dp7N2CSgFqULrOvwntbHtr0MSjVbM9mT4kF5RcjRduVSXeYgcua9n50rfzAWRI5tp3yD--H6_Vz9Xb0gyVSXY5VijvDO6gXH7fKBHqy_Q8AzPGl_Q0U6sqcw9aZx7f003uV5Tyaj_QGIcu_ALMOSWXQ==" /></div></pre>
+<!-- We are going to offload the execution of the Rules and identification of Category, to the `LambdaEx` class, which in turn will offload most of its work to `stdVBA`'s stdLambda class. -->
+
+            </section>
+    
+
+
+
+    
+        <section data-transition="fade">
+            
+            <!-- .slide: data-transition="fade" -->
+<pre style="all:unset;"><div><img class="mermaid" src="https://kroki.io/mermaid/svg/eNp1kM9ugzAMh-99ihyGKNL6Am3Fhe4wqVWr7rCzCV6aEUBKjMTEePdlCX-6KrvF_mx_yi-KellL2rI-phtWGG_jAnQZD0MUrbgCYw4ShIZqxVinMyAUjZZo2GaT2sYRqryAl87Ra6vCYCocM1T4OogyUCoHXobh-RTsX1Fg2HSRnFqNls1ai74de_11Qa5GOpmD3CXxN4Deth8yyTTaYn2Uhs75J3JKnnZuapz5YgJpeq_fG12aGyIldma4k_gcp_u--vf0wf5QNjXY49ghbwndwnL9ebYnuwfRnJZ3LRGNtjfSshbetOzdRzNu7veyJtQfwDFN3fAPHcPDDg==" /></div></pre>
+<!-- but in the process of extending the system, we will include a bunch of other classes too -->
+
+            </section>
+    
+
+
+
+    
+        <section data-transition="fade">
+            
+            <!-- .slide: data-transition="fade" -->
+<pre style="all:unset;"><div><img class="mermaid" src="https://kroki.io/mermaid/svg/eNp1kctqw0AMRff5ilnE2IbmB5JgKI4XhYSUdNG1bAtn4hfIMji4_vdOZ_xIwnQ3uke6l5Ecp5eV5K3oXb5iie7WTYFydxgcZ5UU0DQHCRlBuRKioxAYs5okNmKzCZRwhDJOIeo0vbSFHUyFZg2npraiEIoihiS3w_PJql8wQ3vSp0y4JVRsjlXoR7OPvyyIi5FOyVbeUdQxQcI1jR9cVmHFehcWonyjqi2RQCl2_k4Ed4X09p8aeqUKsd-Xdarsg0CXMz6BrDx_rcThYfrhZGb8SQoJVeEdZcPn-IYJ--ud7hp77iJDnt7ed015c0Vk_yXEXH7yN9W_1gd1E1lXoMyxw6Rl1AOL-9uc7u9egub7mqzlqGPaF5OsMpM0rH4BGizv4Q==" /></div></pre>
+<!-- The main module performing the data extraction will be xrExtractor. Which will of course make heavy use of the xrCategories and xrRules, but will also make use of stdEnumerator for iterating through the paths table, and stdArray for collecting the results-->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <pre><code style="font-size: 10px; line-height:12px;," data-line-numbers="|4-7,9|16-21|24,25,50|30,49|32,34,35,43|61-72|39|42|53,57" class="language-vb">Public Sub ExtractorMain()
+  Application.StatusBar = &quot;Setting up...&quot;
+  
+  Dim ePaths As stdEnumerator
+  Set ePaths = stdEnumerator.CreateFromListObject(dataPaths.ListObjects(&quot;Paths&quot;))
+  Dim categories As xrCategories: Set categories = xrCategories.Create(dataCategories.ListObjects(&quot;Categories&quot;))
+  Dim rules As xrRules: Set rules = xrRules.Create(dataRules.ListObjects(&quot;Rules&quot;))
+  
+  Dim results As stdArray: Set results = stdArray.Create()
+  
+  'Boot a new instance of the excel application
+  'opening workbooks in a seperate instance ensures that the workbook isn't loaded on each loop cycle.
+  'it will also ensure that we can set various performance increasing settings, allowing us to scan the
+  'workbook as soon as possible. Finally we can prevent annoyances like Asking to update links.
+  'note we intentionally don't set this app to visible.
+  Dim xlApp As Excel.Application: Set xlApp = New Excel.Application
+  xlApp.AskToUpdateLinks = False
+  xlApp.ScreenUpdating = False
+  xlApp.AutomationSecurity = msoAutomationSecurityForceDisable
+  xlApp.EnableEvents = False
+  xlApp.DisplayAlerts = False
+  
+  'Loop over each path in the supplied paths table
+  Dim oPath, i As Long: i = 0
+  For Each oPath In ePaths
+    'Increment progress counter
+    i = i + 1
+    
+    'Only extract if Processed &lt;&gt; Yes
+    If oPath(&quot;Processed&quot;) &lt;&gt; &quot;Yes&quot; Then
+      'Open workbook in hidden instance
+      Dim wb As Workbook: Set wb = forceOpenWorkbook(oPath(&quot;Path&quot;), xlApp)
+      
+      Dim ws As Worksheet
+      For Each ws In wb.Worksheets
+        Application.StatusBar = &quot;Processing workbook &quot; &amp; i &amp; &quot;/&quot; &amp; ePaths.length &amp; &quot; Worksheet: &quot; &amp; ws.name
+        
+        'Get category from sheet data
+        Dim sCategory As String: sCategory = categories.getCategory(ws)
+        
+        'Perform extraction
+        If sCategory &lt;&gt; &quot;&quot; Then Call results.Push(rules.executeRules(ws, sCategory))
+      Next
+      
+      wb.Close SaveChanges:=False
+      
+      'Update row
+      Call setRowCell(oPath, &quot;Processed&quot;, &quot;Yes&quot;)
+    End If
+  Next
+  
+  'Close hidden app instance
+  xlApp.Quit
+  
+  
+  Application.StatusBar = &quot;Exporting results...&quot;
+  Call exportResults(dataOutput, &quot;Output&quot;, results)
+  Application.StatusBar = Empty
+End Sub
+
+Private Function forceOpenWorkbook(ByVal sPath As String, Optional ByVal xlApp As Excel.Application = Nothing) As Workbook
+  If xlApp Is Nothing Then Set xlApp = Application
+  On Error GoTo TryRepair
+  Set forceOpenWorkbook = xlApp.Workbooks.Open(sPath)
+  Exit Function
+TryRepair:
+  On Error GoTo ErrorOccurred
+  Set forceOpenWorkbook = xlApp.Workbooks.Open(sPath, CorruptLoad:=XlCorruptLoad.xlRepairFile)
+  Exit Function
+ErrorOccurred:
+  Set forceOpenWorkbook = Nothing
+End Function
+</code></pre>
+<!-- 
+So here we have the code for xrExtractor's main sub routine.
+* We first start by creating wrappers around the Paths, Categories, Rules tables, and create our Results array.
+* NB. The paths object is using a handy function in stdVBA's stdEnumerator class to obtain an enumerator of Dictionary objects.
+* Next we create a new application instance. This allows us to disable various alerts, macros, etc. which might slow down the processing of the workbooks.
+* Next we loop over all paths
+* Check if the path hasn't been processed yet
+* If not it will open the workbook and start iterating over the worksheets.
+* Using forceOpenWorkbook ensures we can handle corrupt workbooks too.
+* Next, we obtain the category of the sheet
+* and if that category is identified, we'll run the extraction rules and add them to our results.
+* Finally after all paths have been processed we'll export all results to the workbook and close the newly created application.
+-->
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <pre><code style="font-size: 10px; line-height:12px;," data-line-numbers="|4,5" class="language-vb">'CONSTRUCTOR
+Private categories As stdArray
+Public Function Create(ByVal lo As ListObject) As xrCategories
+  Set Create = New xrCategories
+  Call Create.protInit(lo)
+End Function
+Friend Sub protInit(lo As ListObject)
+  Set categories = stdArray.Create()
+  
+  Dim vCat As Object
+  For Each vCat In stdEnumerator.CreateFromListObject(lo)
+    'Create a new category object, to be used by getCategory
+    Dim oNewCategory As Object
+    Set oNewCategory = CreateObject(&quot;Scripting.Dictionary&quot;)
+    oNewCategory(&quot;Name&quot;) = vCat(&quot;Category&quot;)
+     
+    'Obtain conditions array, which is an array of lambdas, which can each be used to determine whether a targetSheet matches a category
+    Dim conditions As stdArray: Set conditions = stdArray.CreateFromArray(vCat.items())
+    Call conditions.Shift 'remove first element
+    Set conditions = conditions.Filter(stdLambda.Create(&quot;not isObject($1)&quot;)) 'remove standard additions
+    
+    Set oNewCategory(&quot;Conditions&quot;) = conditions.Map(stdCallback.CreateFromObjectMethod(xrLambdaEx, &quot;Create&quot;))
+    
+    'Bind results to array categories global array
+    categories.Push oNewCategory
+  Next
+End Sub
+
+'Obtains a category from a given worksheet
+'@param {ByVal Worksheet} Worksheet to identify category within. (VIDEO NOTE: `ByVal` is important here as it crashes without it, due to a VBA bug)
+'@returns {String} - &quot;&quot; if no category found, else one of the categories listed in the primal list object
+Public Function getCategory(ByVal targetSheet As Worksheet) As String
+  For Each Category In categories
+    Call Category(&quot;Conditions&quot;).ForEach(stdLambda.Create(&quot;$2.bindGlobal(&quot;&quot;targetSheet&quot;&quot;,$1)&quot;).Bind(targetSheet))
+    If Category(&quot;Conditions&quot;).Reduce(stdLambda.Create(&quot;$1 and $2.Run()&quot;), True) Then
+      getCategory = Category(&quot;Name&quot;)
+      Exit Function
+    End If
+  Next
+  getCategory = &quot;&quot;
+End Function
+</code></pre>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            
+            </section>
+    
+
+
+    </div>
+
+
+  </div>
+
+  <div class="line top"></div>
+  <div class="line bottom"></div>
+  <div class="line left"></div>
+  <div class="line right"></div>
+
+  <script src="libs/reveal.js/4.3.1/reveal.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/notes/notes.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/markdown/markdown.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/highlight/highlight.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/math/math.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/fullscreen/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/animate/svg.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/Chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/d3.v3.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3.patch.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/queue.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/d3/topojson.v1.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/anything/function-plot.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/customcontrols/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/embed-tweet/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/chart.min.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chart/plugin.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/verticator/verticator.js"></script>
+
+<script src="libs/reveal.js/4.3.1/plugin/zoom/zoom.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/search/search.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/menu/menu.js"></script>
+<script src="libs/reveal.js/4.3.1/plugin/chalkboard/plugin.js"></script>
+
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/plugin.js"></script>  -->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/recorder.js"></script>-->
+<!--	<script src="libs/reveal.js/4.3.1/plugin/audio-slideshow/RecordRTC.js"></script>-->
+
+  
+
+<script>
+  const printPlugins = [
+      RevealNotes,
+      RevealHighlight,
+      RevealMath.MathJax3,
+      RevealAnimate,
+      RevealChalkboard, 
+			RevealEmbedTweet,
+			RevealChart,
+		];
+
+		const plugins =  [...printPlugins,
+		RevealZoom, 
+		RevealSearch, 
+				RevealMarkdown, 
+				RevealMenu, 
+				RevealFullscreen,
+				RevealAnything,
+				//RevealAudioSlideshow,
+				//RevealAudioRecorder,
+				RevealCustomControls, 
+				// poll
+				// question
+				// seminar
+				Verticator 
+				 ]
+
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+      controlsTutorial: true,
+      controlsLayout: 'bottom-right',
+      controlsBackArrows: 'faded',
+      progress: true,
+      slideNumber: false,
+      //#showSlideNumber "all" "print" "speaker"
+      hash: true, //# hash: false,
+      //# respondToHashChanges: true,
+      //# history: false,
+      keyboard: true,
+      //#keyboardCondition: null,
+      overview: true,
+      center: true,
+      touch: true,
+      loop: false,
+      rtl: false,
+      //#navigationMode: 'default', linear grid
+      shuffle: false,
+      fragments: true,
+      fragmentInURL: false,
+      embedded: false,
+      help: true,
+      //#pause: true
+      showNotes: false,
+      autoPlayMedia: false, // TODO fix this to a nullable value
+      //#preloadIframes: null. true false
+      //#autoAnimate: true
+      //#autoAnimateMatcher: null,
+      //#autoAnimateEasing: 'ease',
+      //autoAnimateDuration: 1.0,
+      //#autoAnimateUnmatched: true
+      //#autoAnimateStyles: []
+      autoSlide: 0, // TODO fix this to a falseable value
+      autoSlideStoppable: true,
+      autoSlideMethod: '0',
+      defaultTiming: 120,
+      mouseWheel: false,
+      //#previewLinks: false
+      //#postMessage: true, // TODO : this can cause issues with the vscode api ???
+      //#postMessageEvents: false,
+      //#focusBodyOnPageVisibilityChange: true,
+      transition: 'fade',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      //#pdfMaxPagesPerSlide: Number.POSITIVE_INFINITY,
+      //#pdfSeparateFragments: true,
+      //#pdfPageHeightOffset: -1,
+      viewDistance: 3,
+      //#mobileViewDistance: 2,
+      display: 'block',
+      //#hideInactiveCursor: true,
+      //#hideCursorTime: 5000
+
+      // Parallax Background
+      parallaxBackgroundImage: '',
+      parallaxBackgroundSize: '',
+      parallaxBackgroundHorizontal: 0,
+      parallaxBackgroundVertical: 0,
+
+      //Presentation Size
+      width: 960,
+			height: 700,
+			margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2,
+      disableLayout: false,
+
+      audio: {
+        prefix: 'audio/', // audio files are stored in the "audio" folder
+        suffix: '.ogg', // audio files have the ".ogg" ending
+        textToSpeechURL: null, // the URL to the text to speech converter
+        defaultNotes: false, // use slide notes as default for the text to speech converter
+        defaultText: false, // use slide text as default for the text to speech converter
+        advance: 0, // advance to next slide after given time in milliseconds after audio has played, use negative value to not advance
+        autoplay: false, // automatically start slideshow
+        defaultDuration: 5, // default duration in seconds if no audio is available
+        defaultAudios: true, // try to play audios with names such as audio/1.2.ogg
+        playerOpacity: 0.05, // opacity value of audio player if unfocused
+        playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls
+        startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+      },
+      
+      chalkboard: { // font-awesome.min.css must be available
+        //src: "chalkboard/chalkboard.json",
+        storage: "chalkboard-demo",
+      },
+      
+			customcontrols: {
+					controls: [
+      						{
+						  id: 'toggle-overview',
+						  title: 'Toggle overview (O)',
+						  icon: '<i class="fa fa-th"></i>',
+						  action: 'Reveal.toggleOverview();'
+						}
+						,
+      {
+        icon: '<i class="fa fa-pen-square"></i>',
+        title: 'Toggle chalkboard (B)',
+        action: 'RevealChalkboard.toggleChalkboard();'
+      },
+      {
+        icon: '<i class="fa fa-pen"></i>',
+        title: 'Toggle notes canvas (C)',
+        action: 'RevealChalkboard.toggleNotesCanvas();'
+      }
+      
+				]
+			},
+			chart: {
+					defaults: { 
+						color: 'lightgray', // color of labels
+						scale: { 
+							beginAtZero: true, 
+							ticks: { stepSize: 1 },
+							grid: { color: "lightgray" } , // color of grid lines
+						},
+					},
+					line: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ], "borderDash": [ [5,10], [0,0] ] }, 
+					bar: { backgroundColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+					pie: { backgroundColor: [ ["rgba(0,0,0,.8)" , "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"] ]},
+					radar: { borderColor: [ "rgba(20,220,220,.8)" , "rgba(220,120,120,.8)", "rgba(20,120,220,.8)" ]}, 
+			},
+			math: {
+				mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				// pass other options into `MathJax.Hub.Config()`
+				TeX: { Macros: { RR: "{\\bf R}" } }
+				},
+				anything: [ 
+				{
+		className: "plot",
+		defaults: {width:500, height: 500, grid:true},
+		initialize: (function(container, options){ options.target = "#"+container.id; functionPlot(options) })
+	 },
+	 {
+		className: "chart",  
+		initialize: (function(container, options){ container.chart = new Chart(container.getContext("2d"), options);  })
+	 },
+	 {
+		className: "anything",
+		initialize: (function(container, options){ if (options && options.initialize) { options.initialize(container)} })
+	 },
+					],
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: (window.location.search.match(/print-pdf/gi) ? printPlugins : plugins ) 
+		});
+			
+
+
+	    // Change chalkboard theme : 
+		function changeTheme(input) {
+			var config = {};
+			config.theme = input.value;
+			Reveal.getPlugin("RevealChalkboard").configure(config);
+			input.blur();
+		}
+
+		// // Handle the message inside the webview
+        // window.addEventListener('message', event => {
+
+        //     const message = event.data; // The JSON data our extension sent
+
+        //     switch (message.command) {
+        //         case 'refactor':
+        //             Reveal.toggleHelp();
+        //     }
+        // });
+
+		if (window.location.search.match(/print-pdf-now/gi)) {
+      		setTimeout(() => {
+				window.print();
+			  }, 2500);
+			
+    }
+</script>
+
+</body>
+
+</html>

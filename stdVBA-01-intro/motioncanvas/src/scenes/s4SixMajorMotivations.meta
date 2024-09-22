@@ -1,0 +1,34 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "s4Mature",
+      "targetTime": 1.4711424219589355
+    },
+    {
+      "name": "s4Stable",
+      "targetTime": 5.239331783467788
+    },
+    {
+      "name": "s4ActivelyMaintained",
+      "targetTime": 9.575330500820444
+    },
+    {
+      "name": "s4Familiar",
+      "targetTime": 15.582376638715775
+    },
+    {
+      "name": "s4Extensive",
+      "targetTime": 21.408756163388077
+    },
+    {
+      "name": "s4OpenSource",
+      "targetTime": 27.874277468695652
+    },
+    {
+      "name": "s4End",
+      "targetTime": 34.5709059092327
+    }
+  ],
+  "seed": 3550236243
+}

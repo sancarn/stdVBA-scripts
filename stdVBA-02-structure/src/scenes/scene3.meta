@@ -1,0 +1,22 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "beforeWriteClass",
+      "targetTime": 3.175590045683684
+    },
+    {
+      "name": "beforeDotCreate",
+      "targetTime": 4.618345732146614
+    },
+    {
+      "name": "showProtectedMethods",
+      "targetTime": 11.175165307163693
+    },
+    {
+      "name": "beforeScene4",
+      "targetTime": 17.45097116794663
+    }
+  ],
+  "seed": 3384653659
+}

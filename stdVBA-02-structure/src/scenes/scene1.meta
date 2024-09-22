@@ -1,0 +1,22 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "beforeTitle",
+      "targetTime": 0
+    },
+    {
+      "name": "afterTitle",
+      "targetTime": 6.429830447737302
+    },
+    {
+      "name": "beforeStructure",
+      "targetTime": 7.6921982888372495
+    },
+    {
+      "name": "afterStructure",
+      "targetTime": 10.640685080792023
+    }
+  ],
+  "seed": 2187439670
+}

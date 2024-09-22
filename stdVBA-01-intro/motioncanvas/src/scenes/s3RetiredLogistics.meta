@@ -1,0 +1,26 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "s3LogisticsFade",
+      "targetTime": 2.761978005711608
+    },
+    {
+      "name": "s3CreateTheGap",
+      "targetTime": 6.909892923407018
+    },
+    {
+      "name": "s3BridgeThisGap",
+      "targetTime": 8.354736911196902
+    },
+    {
+      "name": "s3FadeOut",
+      "targetTime": 9.990260621468243
+    },
+    {
+      "name": "s3End",
+      "targetTime": 10.689964942599197
+    }
+  ],
+  "seed": 904831749
+}

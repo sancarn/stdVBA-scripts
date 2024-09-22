@@ -1,0 +1,18 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "s5Select",
+      "targetTime": 4.087859337088428
+    },
+    {
+      "name": "s5MoveToCode",
+      "targetTime": 6.017284356095397
+    },
+    {
+      "name": "s5End",
+      "targetTime": 10.927754769438772
+    }
+  ],
+  "seed": 3683608207
+}
