@@ -8,7 +8,7 @@ export default makeScene2D(function* (view) {
     <TypedText
       ref={tt}
       fontFamily="Consolas"
-      fontSize={300}
+      fontSize={200}
       fill="#fff"
       x={0}
       y={0}
@@ -16,7 +16,15 @@ export default makeScene2D(function* (view) {
   );
 
   //Getting started
+  //First let's download the stdVBA library to disk.
+  //1. Google stdVBA, and navigate accordingly to my github repo
+  //2. Click `<> Code`, and select `Download Zip`
+  //3. In windows explorer, right click the downloaded file and select `Extract All`
+  //4. Navigate down to the `src` folder
+  //When you want to use a stdVBA module it couldn't be easier.
+  //  Simply drag and drop desired modules into the `VBAProject` in your VBA Editor
+  //  Remember, if you want to import any of these modules, you must also import `stdICallable`.
   yield* waitUntil("beforeTitle");
-  yield* tt().typeText("Getting started", 2);
+  yield* tt().typeText("Getting started", 1);
   yield* waitUntil("afterTitle");
 });
