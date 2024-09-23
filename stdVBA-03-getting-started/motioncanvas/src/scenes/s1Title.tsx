@@ -15,8 +15,8 @@ export default makeScene2D(function* (view) {
     />
   );
 
-  //In this series, we'll go over everything you need to know to get started with stdVBA
+  //Getting started
   yield* waitUntil("beforeTitle");
-  yield* tt().typeText("Motivation", 2);
+  yield* tt().typeText("Getting started", 2);
   yield* waitUntil("afterTitle");
 });
