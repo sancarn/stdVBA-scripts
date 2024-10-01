@@ -15,7 +15,7 @@ npm run serve
 Then navigate to:
 
 ```
-htto://localhost:9000
+http://localhost:9000
 ```
 
 ### To publish
@@ -28,7 +28,7 @@ Audacity is used for audio capture, removing silence between clips, and removing
 
 ## Kdenlive
 
-Kdenlive is used to snip all the clips together 
+Kdenlive is used to snip all the clips together
 
 ## Script
 
