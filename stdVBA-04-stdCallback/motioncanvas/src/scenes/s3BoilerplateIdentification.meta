@@ -1,0 +1,22 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "s3HighlightDifferent",
+      "targetTime": 1.475833261710357
+    },
+    {
+      "name": "s3Compose",
+      "targetTime": 3.0797754784965794
+    },
+    {
+      "name": "s3Main",
+      "targetTime": 5.079775478496579
+    },
+    {
+      "name": "s3End",
+      "targetTime": 6.929614492082911
+    }
+  ],
+  "seed": 919598139
+}

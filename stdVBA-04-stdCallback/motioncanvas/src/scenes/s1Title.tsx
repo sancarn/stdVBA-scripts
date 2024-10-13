@@ -1,8 +1,9 @@
-import { makeScene2D } from "@motion-canvas/2d";
+import { makeScene2D, View2D } from "@motion-canvas/2d";
 import { TypedText } from "../libs/TypedText";
+
 import { createRef, waitUntil } from "@motion-canvas/core";
 
-export default makeScene2D(function* (view) {
+export default makeScene2D(function* (view: View2D) {
   const tt = createRef<TypedText>();
   view.add(
     <TypedText
@@ -16,7 +17,9 @@ export default makeScene2D(function* (view) {
   );
 
   //In this series, we'll go over everything you need to know to get started with stdVBA
-  yield* waitUntil("beforeTitle");
-  yield* tt().typeText("Motivation", 2);
-  yield* waitUntil("afterTitle");
+  yield* waitUntil("s1BeforeTitle");
+  yield* tt().typeText("stdCallback", 1);
+  yield* waitUntil("s1FirstClassFunctions");
+  yield* tt().typeText("First class\nfunctions", 1);
+  yield* waitUntil("s1AfterTitle");
 });

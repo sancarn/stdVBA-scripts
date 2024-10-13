@@ -1,5 +1,11 @@
 import { initial, signal, Txt, TxtProps } from "@motion-canvas/2d";
-import { createRef, createSignal, SignalValue, SimpleSignal, tween } from "@motion-canvas/core";
+import {
+  createRef,
+  createSignal,
+  SignalValue,
+  SimpleSignal,
+  tween,
+} from "@motion-canvas/core";
 
 export interface TypedTextProps extends TxtProps {}
 
@@ -13,7 +19,7 @@ export class TypedText extends Txt {
     });
   }
 
-  public *typeText(fullText: string, duration: number) {
+  public *typeText(fullText: string, duration: number): any {
     const length = fullText.length;
 
     for (let i = 0; i < length; i++) {
@@ -23,7 +29,7 @@ export class TypedText extends Txt {
       });
     }
   }
-  public *addText(newText: string, duration: number) {
+  public *addText(newText: string, duration: number): any {
     const length = newText.length;
     const oldText = this.currentText();
 

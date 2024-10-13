@@ -2,12 +2,16 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "beforeTitle",
-      "targetTime": 0.7212144748382222
+      "name": "s1BeforeTitle",
+      "targetTime": 0.6355307262569836
     },
     {
-      "name": "afterTitle",
-      "targetTime": 7.588963762234221
+      "name": "s1FirstClassFunctions",
+      "targetTime": 5.625251396648045
+    },
+    {
+      "name": "s1AfterTitle",
+      "targetTime": 10.215195530726259
     }
   ],
   "seed": 2075973548

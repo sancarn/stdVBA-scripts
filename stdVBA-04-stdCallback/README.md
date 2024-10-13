@@ -126,9 +126,13 @@ Sub main()
 End Function
 ```
 
-This is what we mean by first class functions. Unfortunately, VBA does not natively support passing functions as arugments. However `stdCallback` is a part of the stdVBA library that allows us to pass functions as parameters by encapsulating them into callable objects.
+This is what we mean by first class functions.
 
-With a few tweaks of our code, this becomes valid stdVBA enhanced VBA code.
+//TODO: Add small paragraph about the increased maintainability of using 1-class functs.
+
+Unfortunately, VBA does not natively support passing functions as arguments. However, `stdCallback`, allows us to pass functions as parameters by encapsulating them into callable objects.
+
+With a few tweaks of our code, this becomes valid VBA code.
 
 ```vb
 ' Module: ShapeFilters
@@ -163,6 +167,8 @@ End Function
 ```
 
 However wouldn't it be better still if instead of writing 1 function to check each individual condition we instead wrote a generic condition which could be applied to many different filter queries? Indeed it would and this is where `bind` comes in. Let's make an `isColor` function, which will take a color and a shape and check if the color of the shape matches that which was passed. We can then use `bind` to bind parameters to the start of stdCallback function calls. If we do this for `isType` too, we can now abolish all of these additional function definitions.
+
+
 
 ```vb
 ' Module: ShapeFilters

@@ -1,5 +1,30 @@
 {
   "version": 0,
-  "timeEvents": [],
+  "timeEvents": [
+    {
+      "name": "s2MakeCollection",
+      "targetTime": 2.824357541899442
+    },
+    {
+      "name": "s2FilterSquare",
+      "targetTime": 5.6956424581005605
+    },
+    {
+      "name": "s2FilterTriangles",
+      "targetTime": 8.06122905027933
+    },
+    {
+      "name": "s2FilterYellow",
+      "targetTime": 10.349944134078214
+    },
+    {
+      "name": "s2FilterRedTriangles",
+      "targetTime": 12.44446927374302
+    },
+    {
+      "name": "s2End",
+      "targetTime": 17.992586194189357
+    }
+  ],
   "seed": 461119692
 }
