@@ -1,0 +1,18 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "s4BeforeTitle",
+      "targetTime": 1.3766854215053788
+    },
+    {
+      "name": "s4FadeTitle",
+      "targetTime": 2.661446716308251
+    },
+    {
+      "name": "s4End",
+      "targetTime": 4.591959501523318
+    }
+  ],
+  "seed": 2480454709
+}

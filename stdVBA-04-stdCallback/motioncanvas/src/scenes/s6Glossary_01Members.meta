@@ -1,0 +1,70 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "s6G_01_Create1",
+      "targetTime": 5.000000000000002
+    },
+    {
+      "name": "s6G_01_Create2",
+      "targetTime": 7.589801183619562
+    },
+    {
+      "name": "s6G_01_Create3",
+      "targetTime": 10.065737063215021
+    },
+    {
+      "name": "s6G_01_Create4",
+      "targetTime": 12.558342207020997
+    },
+    {
+      "name": "s6G_01_Create5",
+      "targetTime": 15.070173525192146
+    },
+    {
+      "name": "s6G_01_Instance1",
+      "targetTime": 17.45645305535717
+    },
+    {
+      "name": "s6G_01_Instance2",
+      "targetTime": 20.14124173893266
+    },
+    {
+      "name": "s6G_01_Instance3",
+      "targetTime": 22.894968855406482
+    },
+    {
+      "name": "s6G_01_Instance4",
+      "targetTime": 25.414865689683793
+    },
+    {
+      "name": "s6G_01_Interface1",
+      "targetTime": 28.034975502045324
+    },
+    {
+      "name": "s6G_01_Interface2",
+      "targetTime": 30.870083652747173
+    },
+    {
+      "name": "s6G_01_Interface3",
+      "targetTime": 33.38998048702449
+    },
+    {
+      "name": "s6G_01_Interface4",
+      "targetTime": 36.19381409254042
+    },
+    {
+      "name": "s6G_01_Events1",
+      "targetTime": 38.96424337202828
+    },
+    {
+      "name": "s6G_01_Events2",
+      "targetTime": 41.65116183644595
+    },
+    {
+      "name": "s6_01End",
+      "targetTime": 44.87680907899717
+    }
+  ],
+  "seed": 4013814958
+}

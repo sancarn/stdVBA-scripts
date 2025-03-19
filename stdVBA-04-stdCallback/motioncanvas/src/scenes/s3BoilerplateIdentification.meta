@@ -14,8 +14,24 @@
       "targetTime": 5.079775478496579
     },
     {
+      "name": "s3Arrows1",
+      "targetTime": 9.42749978513107
+    },
+    {
+      "name": "s3Arrows2",
+      "targetTime": 11.269358632772471
+    },
+    {
+      "name": "s3ArrowsFade",
+      "targetTime": 13.696858417903544
+    },
+    {
+      "name": "s3VBACompatible",
+      "targetTime": 16.417178671779453
+    },
+    {
       "name": "s3End",
-      "targetTime": 6.929614492082911
+      "targetTime": 20.43829956034513
     }
   ],
   "seed": 919598139

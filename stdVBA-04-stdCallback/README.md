@@ -34,7 +34,7 @@ Kdenlive is used to snip all the clips together
 
 **stdCallback**
 
-In order to understand stdCallback we first have to look at 1st class functions.
+`stdCallback` is a way of implementing callbacks in VBA. Callbacks are mechanisms that allow deferred (late-bound) execution of code. Typically callbacks are implemented using first-class functions, which isn't something we have access to in VBA. Instead we can use `stdCallback` to define callable objects from existing functions.
 
 Imagine you have a collection of shapes and it's your job to filter out a specific subset of shapes.
 
@@ -72,15 +72,6 @@ Function filterYellow(shapes as Collection) as Collection
         end if
     next
 End Function
-Function filterRedTriangles(shapes as Collection) as Collection
-    set filterRedTriangles = new Collection
-    Dim shp as Shape
-    For each shp in shapes
-        if shp.type = "triangle" and shp.color = "red" then
-            Call filterRedTriangles.add(shp)
-        end if
-    next
-End Function
 
 ' Module: Any
 Sub main()
@@ -89,10 +80,9 @@ Sub main()
 End Function
 ```
 
-You might find yourselves frustrated that each time you write a report to filter down these objects, you create another 7 lines of "the same kind of code".
+You might find yourselves frustrated that each time you write a report to filter down these objects, you create another 7 lines of "the same kind of code" and you only really modify one line, the condition.
 
-Well, imagine for a moment that we could bake "the condition" into a variable, or more specifically a function as a variable. Then we would be able to do this...
-We could rename this code "FilterShapes" and now all our other filter conditions can be quickly rewritten too.
+Well, imagine for a moment that we could bake these conditions into specific functions. And then pass that function as a parameter to a generic filter function "FilterShapes".
 
 ```vb
 ' Module: ShapeFilters
@@ -115,24 +105,19 @@ End Function
 Function isYellow(shp as Shape) as Boolean
     isYellow = shp.color = "yellow"
 End Function
-Function isRedTriangle(shp as Shape) as Boolean
-    isRedTriangle = shp.color = "red" and shp.type = "triangle"
-End Function
 
 ' Module: Any
 Sub main()
     set shapes = getShapes()
-    set shapes = FilterShapes(shapes, isRedTriangle)
+    set shapes = FilterShapes(shapes, isYellow)
 End Function
 ```
 
-This is what we mean by first class functions.
+`isYellow` here is a callback because it is passed as an argument to another function (`FilterShapes`), which later calls it during execution. Callbacks, used in this way, help decouple logic, improving readability and maintainability by reducing code duplication.
 
-//TODO: Add small paragraph about the increased maintainability of using 1-class functs.
+Unfortunately, VBA does not natively support passing functions as arguments. However, `stdCallback`, allows us to encapsulate functions into callable objects, making it possible to pass them as parameters.
 
-Unfortunately, VBA does not natively support passing functions as arguments. However, `stdCallback`, allows us to pass functions as parameters by encapsulating them into callable objects.
-
-With a few tweaks of our code, this becomes valid VBA code.
+With a few tweaks, our code becomes valid VBA.
 
 ```vb
 ' Module: ShapeFilters
@@ -155,9 +140,6 @@ End Function
 Function isYellow(shp as Shape) as Boolean
     isYellow = shp.color = "yellow"
 End Function
-Function isRedTriangle(shp as Shape) as Boolean
-    isRedTriangle = shp.color = "red" and shp.type = "triangle"
-End Function
 
 ' Module: Any
 Sub main()
@@ -166,9 +148,11 @@ Sub main()
 End Function
 ```
 
-However wouldn't it be better still if instead of writing 1 function to check each individual condition we instead wrote a generic condition which could be applied to many different filter queries? Indeed it would and this is where `bind` comes in. Let's make an `isColor` function, which will take a color and a shape and check if the color of the shape matches that which was passed. We can then use `bind` to bind parameters to the start of stdCallback function calls. If we do this for `isType` too, we can now abolish all of these additional function definitions.
+So this is pretty good, but it can be made better still by utilising the `bind` method. Instead of writing a separate function for each individual condition, we can create generic condition functions that can be applied to multiple filtering operations.
 
+Using `bind`, we can prepends parameters to the start of `stdCallback` calls. This allows us to dynamically generate filters without needing to define separate functions like `isGreen` or `isSquare`. With this approach, we can eliminate all those additional function definitions while keeping the code flexible and maintainable.
 
+Let's define a generic `isColor` and `isType` function to check the color and shape type respectively.
 
 ```vb
 ' Module: ShapeFilters
@@ -198,7 +182,54 @@ Sub main()
 End Function
 ```
 
-It is important to note that the `bind` method binds the attached parameter onto the start of the calling function. successively bound parameters will be bound in "reverse" order.
+And just like that you can see we've trimmed down our initial growing code block of 40 lines, to a fixed 20 lines of elegant code.
+
+But we're not done yet, join us next time to see how this code could be improved further with `stdLambda`.
+
+---
+
+### Glossary:
+
+#### Members
+
+##### Constructor Methods
+
+There are 5 mechanisms which can be used to build new stdCallback objects.
+
+- `CreateFromModule` - Creates a callback to a public method in a standard module. If the module name is empty all standard modules will be searched, and the callback is bound to the first matching method.
+- `CreateFromWorkbookModule` - Creates a callback to a public method in a standard module within an external workbook. If the module name is empty all standard modules will be searched, and the callback is bound to the first matching method.
+- `CreateFromObjectMethod` - Creates a callback to a public method in an object.
+- `CreateFromObjectProperty` - Creates a callback to get or set a public property. `VbCallType` specifies whether to get or set the property.
+- `CreateFromPointer` - Creates a callback to a loaded function address (e.g., a Windows API function), or a module function address obtained via the `AddressOf` method.
+
+##### Instance Methods
+
+Once the callback is created, you can use any of the following methods to modify and use it.
+
+- `Run` - Executes the callback with the provided parameters.
+- `RunEx` - Executes the callback with an array of parameters.
+- `Bind` - Prepends a parameter to the callback.
+- `BindEx` - Binds multiple parameters from an array.
+
+##### `stdICallable` Methods
+
+`stdCallback` also implements the `stdICallable` interface, and thusly implements all of the following methods.
+
+- `Run` - as above
+- `RunEx` - as above
+- `Bind` - as above
+- `SendMessage` - Can be used to retrieve specified information from the object.
+
+##### Events
+
+`stdCallback` supports two events that allow interception and modification of callback execution:
+
+- `BeforeRun` - Triggers before a callback is executed. Can be used to detect calls and modify parameters before execution.
+- `AfterRun` - Triggers after a callback is executed. Can be used to alter the return value of a callback.
+
+#### A note on `bind`
+
+The `bind` method prepends parameters onto the function call, meaning that successively bound parameters are bound in reverse order.
 
 ```vb
 Sub printOut(a,b,c)
@@ -210,8 +241,12 @@ Sub main()
     callback.bind(1) _
             .bind(2) _
             .bind(3) _
-            .run()  'prints 3,2,1
+            .run()
 End Sub
 ```
 
-And just like that you can see we've trimmed down our initial growing code block of 40 lines, to a fixed 20 or so lines of elegant code.
+This example passes params in as follows, and thus prints 3,2,1.
+
+#### //Debugging
+
+Since stdCallback introduces some complex runtime behavior, users may struggle to debug it.
