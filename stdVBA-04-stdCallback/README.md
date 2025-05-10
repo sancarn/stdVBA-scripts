@@ -229,7 +229,7 @@ Once the callback is created, you can use any of the following methods to modify
 
 #### A note on `bind`
 
-The `bind` method prepends parameters onto the function call, meaning that successively bound parameters are bound in reverse order.
+The `bind` method appends parameters onto the function call. Successive calls to `bind` add parameters in the order they are bound, so the final call uses all bound parameters followed by the ones passed to run.
 
 ```vb
 Sub printOut(a,b,c)
@@ -238,14 +238,14 @@ End Sub
 
 Sub main()
     set callback = stdCallback.CreateFromModule("", "printOut")
-    callback.bind(1) _
-            .bind(2) _
-            .bind(3) _
-            .run()
+    callback.bind(1,2) _
+            .bind(3,4) _
+            .bind(5,6) _
+            .run(7,8)
 End Sub
 ```
 
-This example passes params in as follows, and thus prints 3,2,1.
+That is, in the following example The printed result is 1,2,3,4,5,6,7,8.
 
 #### //Debugging
 

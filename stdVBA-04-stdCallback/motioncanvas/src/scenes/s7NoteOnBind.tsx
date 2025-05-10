@@ -53,8 +53,8 @@ Sub main()
             .bind(5,6) _
             .run(7,8)
 End Sub
-Sub printOut(a,b,c,d,e,f,g,h,i,j)
-  Debug.Print Join(Array(a,b,c,d,e,f,g,h,i,j),"-")
+Sub printOut(ParamArray v())
+  Debug.Print Join(v,"-")
 End Sub`}
       opacity={0}
     />
@@ -70,15 +70,15 @@ End Sub`}
     example.selection(example.findFirstRange(/bind\(1,2\)/g), 1)
   );
   yield* all(
-    exampleRT.code.edit(1)`(${insert("3,4,")}1,2)`,
+    exampleRT.code.edit(1)`(1,2${insert(",3,4")})`,
     example.selection(example.findFirstRange(/bind\(3,4\)/g), 1)
   );
   yield* all(
-    exampleRT.code.edit(1)`(${insert("5,6,")}3,4,1,2)`,
+    exampleRT.code.edit(1)`(1,2,3,4${insert(",5,6")})`,
     example.selection(example.findFirstRange(/bind\(5,6\)/g), 1)
   );
   yield* all(
-    exampleRT.code.edit(1)`${insert("Run")}(5,6,3,4,1,2${insert(",7,8")})`,
+    exampleRT.code.edit(1)`${insert("Run")}(1,2,3,4,5,6${insert(",7,8")})`,
     example.selection(example.findFirstRange(/run\(7,8\)/g), 1)
   );
   yield* waitUntil("s7_Eval");
@@ -86,7 +86,7 @@ End Sub`}
     exampleRT.code.edit(1)`${replace(
       "Run(",
       'Result: "'
-    )}5,6,3,4,1,2,7,8${replace(")", '"')}`,
+    )}1,2,3,4,5,6,7,8${replace(")", '"')}`,
     example.selection(DEFAULT, 1)
   );
 
