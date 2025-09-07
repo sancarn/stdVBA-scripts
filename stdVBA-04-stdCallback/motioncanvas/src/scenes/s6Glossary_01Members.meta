@@ -3,67 +3,71 @@
   "timeEvents": [
     {
       "name": "s6G_01_Create1",
-      "targetTime": 5.000000000000002
+      "targetTime": 9.059459343375362
     },
     {
       "name": "s6G_01_Create2",
-      "targetTime": 7.589801183619562
+      "targetTime": 23.24543167541668
     },
     {
       "name": "s6G_01_Create3",
-      "targetTime": 10.065737063215021
+      "targetTime": 41.2986593372234
     },
     {
       "name": "s6G_01_Create4",
-      "targetTime": 12.558342207020997
+      "targetTime": 47.911261415997586
     },
     {
       "name": "s6G_01_Create5",
-      "targetTime": 15.070173525192146
+      "targetTime": 61.64892707944729
     },
     {
       "name": "s6G_01_Instance1",
-      "targetTime": 17.45645305535717
+      "targetTime": 76.95070261923175
+    },
+    {
+      "name": "s6G_01_Instance1a",
+      "targetTime": 88.71608543515875
     },
     {
       "name": "s6G_01_Instance2",
-      "targetTime": 20.14124173893266
+      "targetTime": 91.75816387477667
     },
     {
       "name": "s6G_01_Instance3",
-      "targetTime": 22.894968855406482
+      "targetTime": 97.52087751678908
     },
     {
       "name": "s6G_01_Instance4",
-      "targetTime": 25.414865689683793
+      "targetTime": 102.10077281855051
     },
     {
       "name": "s6G_01_Interface1",
-      "targetTime": 28.034975502045324
+      "targetTime": 107.45211655409322
     },
     {
       "name": "s6G_01_Interface2",
-      "targetTime": 30.870083652747173
+      "targetTime": 112.85643627660095
     },
     {
       "name": "s6G_01_Interface3",
-      "targetTime": 33.38998048702449
+      "targetTime": 118.50104988739909
     },
     {
       "name": "s6G_01_Interface4",
-      "targetTime": 36.19381409254042
+      "targetTime": 122.50847810313046
     },
     {
       "name": "s6G_01_Events1",
-      "targetTime": 38.96424337202828
+      "targetTime": 128.91283726346106
     },
     {
       "name": "s6G_01_Events2",
-      "targetTime": 41.65116183644595
+      "targetTime": 148.75097892344866
     },
     {
       "name": "s6_01End",
-      "targetTime": 44.87680907899717
+      "targetTime": 158.96673332532797
     }
   ],
   "seed": 4013814958

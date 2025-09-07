@@ -7,23 +7,23 @@
     },
     {
       "name": "s2FilterSquare",
-      "targetTime": 5.6956424581005605
+      "targetTime": 7.207497276687904
     },
     {
       "name": "s2FilterTriangles",
-      "targetTime": 8.06122905027933
+      "targetTime": 10.720973638534844
     },
     {
       "name": "s2FilterYellow",
-      "targetTime": 10.349944134078214
+      "targetTime": 13.009688722333728
     },
     {
       "name": "s2FilterRedTriangles",
-      "targetTime": 12.44446927374302
+      "targetTime": 15.88813858274753
     },
     {
       "name": "s2End",
-      "targetTime": 17.992586194189357
+      "targetTime": 24.68394363201113
     }
   ],
   "seed": 461119692

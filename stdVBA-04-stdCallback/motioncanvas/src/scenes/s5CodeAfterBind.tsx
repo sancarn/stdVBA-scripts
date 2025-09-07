@@ -167,6 +167,29 @@ End Function`;
   yield* waitUntil("s5Comparrison");
   yield* all(original.x(-600, 1), main.x(400, 1), main.fontSize(20, 1));
 
+  yield* waitUntil("s5Lambda");
+  yield* all(original.x(-1300, 1), main.x(0, 1), main.fontSize(32, 1));
+  yield* waitUntil("s5Lambda2");
+  yield* main.code(
+    `\
+Function FilterShapes(ByVal shapes as Collection, ByVal filter as stdICallable) as Collection
+  set FilterShapes = new Collection
+  Dim shp as Shape
+  For each shp in shapes
+    if filter(shp) then
+      Call FilterShapes.add(shp)
+    end if
+  next
+End Function
+
+Sub MainRedTriangles()
+  set shapes = getShapes()
+  set shapes = FilterShapes(shapes, stdLambda.Create("$1.color = ""red"" and $1.type = ""triangle"""))
+End Sub
+`,
+    1
+  );
+
   /**
    * But we're not done yet, join us next time to see how this code could be improved further with `stdLambda`.
    */

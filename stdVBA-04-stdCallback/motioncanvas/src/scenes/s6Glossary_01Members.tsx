@@ -175,6 +175,24 @@ End Sub
       1
     )
   );
+
+  yield* waitUntil("s6G_01_Instance1a");
+  yield* all(
+    example.code(
+      `\
+Public Sub TestCB()
+  Dim cb as stdCallback
+  set cb = stdCallback.CreateFromObjectMethod(Me, "Test")
+  Call cb("hello","world")
+End Sub
+Public Sub Test(ByVal a as string, ByVal b as string)
+  Debug.Print a & " " & b
+End Sub
+`,
+      1
+    )
+  );
+
   yield* waitUntil("s6G_01_Instance2");
   yield* all(
     main.code.edit(1)`Run${insert("Ex")}(${replace(
@@ -195,6 +213,7 @@ End Sub
       1
     )
   );
+
   yield* waitUntil("s6G_01_Instance3");
   yield* all(
     main.code.edit(1)`${replace(

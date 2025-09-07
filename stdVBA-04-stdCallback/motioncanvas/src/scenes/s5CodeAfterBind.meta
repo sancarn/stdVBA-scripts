@@ -7,11 +7,19 @@
     },
     {
       "name": "s5Comparrison",
-      "targetTime": 5.351304284185859
+      "targetTime": 10.390820346143695
+    },
+    {
+      "name": "s5Lambda",
+      "targetTime": 22.45451106822307
+    },
+    {
+      "name": "s5Lambda2",
+      "targetTime": 26.560500062962983
     },
     {
       "name": "s5End",
-      "targetTime": 15.21350230215722
+      "targetTime": 31.162073124702427
     }
   ],
   "seed": 835381184

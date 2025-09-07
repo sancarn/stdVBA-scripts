@@ -229,24 +229,35 @@ Once the callback is created, you can use any of the following methods to modify
 
 #### A note on `bind`
 
-The `bind` method appends parameters onto the function call. Successive calls to `bind` add parameters in the order they are bound, so the final call uses all bound parameters followed by the ones passed to run.
+Note: The `bind` and `bindex` methods, append the arguments to an internal list which is then prepended to the called arguments when `run` or `runex` is called.
+
+Arguments are executed in the same order that they are bound.
+
+Ultimately, in this example:
 
 ```vb
-Sub printOut(a,b,c)
-  Debug.Print a & "," & b & "," & c
+Sub printOut(ParamArray params())
+  Debug.Print join(params, ",")
 End Sub
 
 Sub main()
     set callback = stdCallback.CreateFromModule("", "printOut")
     callback.bind(1,2) _
             .bind(3,4) _
-            .bind(5,6) _
-            .run(7,8)
+            .run(5,6)
 End Sub
 ```
 
-That is, in the following example The printed result is 1,2,3,4,5,6,7,8.
+The arguments are called in the same order, i.e. 1,2,3,4,5,6
 
 #### //Debugging
 
 Since stdCallback introduces some complex runtime behavior, users may struggle to debug it.
+
+### TODO
+
+- "Instead we can use `stdCallback` to define callable objects from existing functions." - Maybe we should have an animation here?
+- "however stdCallback, allows us to encapsulate functions into callable objects, making it possible to pass them as parameters." - Maybe use the same animation as above?
+- `s3Main` cycle should maybe be a bit longer
+- "Join us next time to see how this code could be improved further with `stdLambda`." - Maybe we should have an animation here?
+- Is it even worthwhile having the `s6Glossary` section? It might be better to just link to [stdVBA-docs.github.io](https://sancarn.github.io/stdVBA-docs/)...

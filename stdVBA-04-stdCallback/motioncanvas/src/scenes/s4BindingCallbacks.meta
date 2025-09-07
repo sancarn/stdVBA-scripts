@@ -3,15 +3,15 @@
   "timeEvents": [
     {
       "name": "s4BeforeTitle",
-      "targetTime": 1.3766854215053788
+      "targetTime": 4.456389681590727
     },
     {
       "name": "s4FadeTitle",
-      "targetTime": 2.661446716308251
+      "targetTime": 11.116634775815282
     },
     {
       "name": "s4End",
-      "targetTime": 4.591959501523318
+      "targetTime": 45.247373848360965
     }
   ],
   "seed": 2480454709

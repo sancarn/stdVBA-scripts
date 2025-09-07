@@ -7,6 +7,7 @@ import s4BindingCallbacks from "./scenes/s4BindingCallbacks?scene";
 import s5CodeAfterBind from "./scenes/s5CodeAfterBind?scene";
 import s6Glossary_01Members from "./scenes/s6Glossary_01Members?scene";
 import s7NoteOnBind from "./scenes/s7NoteOnBind?scene";
+import audio from "./../../voiceover/Exports/stdCallback.mp3";
 
 export default makeProject({
   scenes: [
@@ -15,7 +16,6 @@ export default makeProject({
     s3BoilerplateIdentification,
     s4BindingCallbacks,
     s5CodeAfterBind,
-    s6Glossary_01Members,
-    s7NoteOnBind,
   ],
+  audio: audio,
 });

@@ -3,35 +3,35 @@
   "timeEvents": [
     {
       "name": "s3HighlightDifferent",
-      "targetTime": 1.475833261710357
+      "targetTime": 6.0953896518383734
     },
     {
       "name": "s3Compose",
-      "targetTime": 3.0797754784965794
+      "targetTime": 13.298794159688857
     },
     {
       "name": "s3Main",
-      "targetTime": 5.079775478496579
+      "targetTime": 16.22270543771446
     },
     {
       "name": "s3Arrows1",
-      "targetTime": 9.42749978513107
+      "targetTime": 25.721935052128078
     },
     {
       "name": "s3Arrows2",
-      "targetTime": 11.269358632772471
+      "targetTime": 29.327624521454723
     },
     {
       "name": "s3ArrowsFade",
-      "targetTime": 13.696858417903544
+      "targetTime": 33.23898181371783
     },
     {
       "name": "s3VBACompatible",
-      "targetTime": 16.417178671779453
+      "targetTime": 59.50504100151892
     },
     {
       "name": "s3End",
-      "targetTime": 20.43829956034513
+      "targetTime": 64.92602746285067
     }
   ],
   "seed": 919598139
