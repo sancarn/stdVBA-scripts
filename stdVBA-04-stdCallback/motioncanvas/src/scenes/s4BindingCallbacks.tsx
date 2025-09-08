@@ -67,10 +67,16 @@ End Function
 Public Sub Main()
   set isYellow = stdCallback.CreateFromModule("","isColor").bind("yellow")
 End Sub
+
+'  Usage:
+  isGreen(shp) 
+    ==> isColor.bind("green")(shp)  
+    ==>  isColor("green", shp)
 `}
       />
     ) as Code
   );
+
   yield* codeRef().opacity(1, 1);
   const colors = [
     "yellow",
@@ -93,6 +99,18 @@ End Sub
     "olive",
     "navy",
     "gold",
+    "yellow",
+    "red",
+    "blue",
+    "green",
+    "orange",
+    "purple",
+    "pink",
+    "brown",
+    "black",
+    "white",
+    "gray",
+    "cyan",
   ];
   var index = -1;
   for (var colorOld of colors.slice(undefined, colors.length - 1)) {

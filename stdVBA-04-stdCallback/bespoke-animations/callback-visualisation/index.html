@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback Mechanism Visualization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1D1C1C; /* gray-900 */
+            color: #F9FAFB; /* gray-50 */
+            overflow: hidden;
+        }
+        canvas {
+            background-color: #1D1C1C; /* gray-800 */
+            border-radius: 0.5rem;
+            border: 1px solid #374151; /* gray-700 */
+        }
+        .mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center h-screen p-4">
+
+    <div class="w-full max-w-4xl text-center mb-4">
+        <h1 class="text-2xl md:text-3xl font-bold text-cyan-400">Callback Visualisation</h1>
+        <p class="text-gray-400 mt-1">A function (the processor) uses a swappable tool (the callback) to transform shapes.</p>
+    </div>
+
+    <canvas id="callbackCanvas" class="w-full max-w-4xl h-auto aspect-[2/1]"></canvas>
+
+    <script>
+        const canvas = document.getElementById('callbackCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let shapes = [];
+        let animationFrameId;
+
+        // --- Configuration ---
+        const PROCESS_TIME_MS = 600;
+        const SHAPE_SPAWN_MS = 1000;
+        const CONVEYOR_SPEED = 1;
+        const TOOL_SWAP_EVERY = 5; // swap tools every 5 processed shapes
+        const TOOL_ICON_WIDTH = 110;
+        const TOOL_ICON_HEIGHT = 28;
+        const TOOL_ANIM_SPEED = 8; // px per frame
+
+        // --- Tools (Callbacks) ---
+        const changeToGreen = (shape) => {
+            shape.color = '#22c55e'; // green-500
+            shape.label = 'Colored Green';
+        };
+
+        const changeToSquare = (shape) => {
+            shape.vertices = 4;
+            shape.label = 'Made Square';
+        };
+
+        const addVertex = (shape) => {
+            if (shape.vertices < 10) {
+                shape.vertices++;
+            }
+            shape.label = 'Vertex Added';
+        };
+
+        const stopRotation = (shape) => {
+            shape.rotationSpeed = 0;
+            shape.label = 'Stopped Rotation';
+        };
+
+        const halveSize = (shape) => {
+            shape.size = Math.max(Math.floor(shape.size / 2), 8);
+            shape.label = 'Halved Size';
+        };
+
+        // Tool bank with animation state (home/target/current positions)
+        let tools = [
+            { id: 'green', name: 'toGreen', func: changeToGreen, color: '#22c55e' },
+            { id: 'square', name: 'toSquare', func: changeToSquare, color: '#06b6d4' },
+            { id: 'addVertex', name: 'addVertex', func: addVertex, color: '#f59e0b' },
+            { id: 'stopRotation', name: 'haltSpin', func: stopRotation, color: '#ef4444' },
+            { id: 'halfSize', name: 'halfSize', func: halveSize, color: '#a78bfa' },
+        ];
+        let activeToolIndex = 0;
+        let processedShapeCount = 0;
+
+        // --- Utility Functions ---
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // --- Shape Class ---
+        class Shape {
+            constructor(x, y) {
+                this.id = Math.random();
+                this.x = x;
+                this.y = y;
+                this.vertices = getRandomInt(3, 5);
+                this.color = '#a78bfa'; // violet-400
+                this.size = 20;
+                this.rotation = 0;
+                this.rotationSpeed = 0.01;
+                
+                this.isProcessing = false;
+                this.processed = false;
+                this.processingStartTime = 0;
+                this.processingLockX = null;
+                this.label = '';
+                this.labelAlpha = 0;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+
+                ctx.fillStyle = this.color;
+                ctx.strokeStyle = '#e5e7eb'; // gray-200
+                ctx.lineWidth = 2;
+
+                ctx.beginPath();
+                for (let i = 0; i < this.vertices; i++) {
+                    const angle = (i / this.vertices) * Math.PI * 2;
+                    const xPos = this.size * Math.cos(angle);
+                    const yPos = this.size * Math.sin(angle);
+                    if (i === 0) {
+                        ctx.moveTo(xPos, yPos);
+                    } else {
+                        ctx.lineTo(xPos, yPos);
+                    }
+                }
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                ctx.restore();
+
+                // Draw status label
+                if (this.labelAlpha > 0) {
+                    ctx.fillStyle = `rgba(249, 250, 251, ${this.labelAlpha})`;
+                    ctx.font = '14px "Inter"';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(this.label, this.x, this.y - this.size - 10);
+                    this.labelAlpha -= 0.01;
+                }
+            }
+
+            update() {
+                this.x += CONVEYOR_SPEED;
+                if (!this.isProcessing) {
+                    this.rotation += this.rotationSpeed;
+                }
+            }
+        }
+
+        // --- Main Animation Logic ---
+        function setup() {
+            // High DPI canvas scaling
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+            
+            // Restart intervals
+            if (window.shapeSpawner) clearInterval(window.shapeSpawner);
+
+            // Periodically add new shapes
+            window.shapeSpawner = setInterval(() => {
+                const conveyorY = canvas.height / dpr * 0.6;
+                shapes.push(new Shape(-30, conveyorY));
+            }, SHAPE_SPAWN_MS);
+
+            // Initialize tool bank layout
+            computeToolBankLayout();
+
+            // Start animation loop
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            animate();
+        }
+
+        function animate() {
+            const dpr = window.devicePixelRatio || 1;
+            const logicalWidth = canvas.width / dpr;
+            const logicalHeight = canvas.height / dpr;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawConveyor(logicalWidth, logicalHeight);
+            const processor = drawProcessor(logicalWidth, logicalHeight);
+            updateAndDrawTools(processor, logicalWidth, logicalHeight);
+            
+            // Update and draw shapes
+            shapes.forEach(shape => {
+                shape.update();
+                shape.draw();
+                processShape(shape, processor);
+            });
+
+            // Clean up off-screen shapes
+            shapes = shapes.filter(shape => shape.x < logicalWidth + 50);
+            
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        function drawConveyor(w, h) {
+            const conveyorHeight = h * 0.05;
+            const conveyorY = h * 0.6 - conveyorHeight / 2;
+            ctx.fillStyle = '#374151'; // gray-700
+            ctx.fillRect(0, conveyorY, w, conveyorHeight);
+            ctx.fillStyle = '#4b5563'; // gray-600
+            ctx.fillRect(0, conveyorY, w, conveyorHeight * 0.2);
+        }
+
+        function drawProcessor(w, h) {
+            const processorWidth = w * 0.15;
+            const processorX = w / 2 - processorWidth / 2;
+            const conveyorY = h * 0.6;
+            const processorHeight = h * 0.3;
+            const processorY = conveyorY - processorHeight - 15;
+            
+            // Main body
+            ctx.fillStyle = '#4b5563'; // gray-600
+            ctx.strokeStyle = '#9ca3af'; // gray-400
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(processorX, processorY);
+            ctx.lineTo(processorX + processorWidth, processorY);
+            ctx.lineTo(processorX + processorWidth - 20, processorY + processorHeight);
+            ctx.lineTo(processorX + 20, processorY + processorHeight);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            // Display current callback
+            ctx.fillStyle = '#111827';
+            ctx.fillRect(processorX + 5, processorY + 10, processorWidth - 10, 40);
+            ctx.strokeStyle = '#06b6d4';
+            ctx.strokeRect(processorX + 5, processorY + 10, processorWidth - 10, 40);
+            
+            ctx.fillStyle = '#f9fafb';
+            ctx.font = 'bold 12px "Inter"';
+            ctx.textAlign = 'center';
+            ctx.fillText("Current Tool (Callback):", w / 2, processorY - 10);
+            ctx.fillStyle = '#06b6d4'; // cyan-500
+            ctx.font = '13px "Roboto Mono"';
+
+            return { x: processorX, y: processorY, width: processorWidth, height: processorHeight };
+        }
+
+        function processShape(shape, processor) {
+            const toolTipY = processor.y + processor.height;
+            const centerX = processor.x + processor.width / 2;
+            const inPosition = shape.x > centerX - 5 && shape.x < centerX + 5;
+
+            if (shape.processed) {
+                return;
+            }
+
+            // Start processing when entering the zone
+            if (!shape.isProcessing && inPosition) {
+                shape.isProcessing = true;
+                shape.processingStartTime = performance.now();
+                shape.processingLockX = centerX;
+            }
+
+            // While processing, keep the shape under the tool and advance progress
+            if (shape.isProcessing) {
+                // Lock position at the center while processing
+                if (shape.processingLockX !== null) {
+                    shape.x = shape.processingLockX;
+                }
+
+                const elapsed = performance.now() - shape.processingStartTime;
+                const progress = Math.min(elapsed / PROCESS_TIME_MS, 1);
+
+                // Draw processing beam/effect
+                ctx.beginPath();
+                ctx.moveTo(centerX, toolTipY);
+                ctx.lineTo(shape.x, shape.y);
+                const gradient = ctx.createLinearGradient(shape.x, shape.y, centerX, toolTipY);
+                gradient.addColorStop(0, `rgba(255, 255, 0, ${0.8 * (1 - progress)})`);
+                gradient.addColorStop(1, 'rgba(255, 255, 0, 0)');
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 4;
+                ctx.stroke();
+
+                // Draw progress bar
+                ctx.fillStyle = '#4b5563';
+                ctx.fillRect(processor.x + 10, processor.y + 60, processor.width - 20, 10);
+                ctx.fillStyle = '#22c55e'; // green-500
+                ctx.fillRect(processor.x + 10, processor.y + 60, (processor.width - 20) * progress, 10);
+
+                if (progress >= 1) {
+                    // Apply the actual callback function
+                    tools[activeToolIndex].func(shape);
+
+                    shape.processed = true;
+                    shape.isProcessing = false;
+                    shape.processingLockX = null;
+                    shape.labelAlpha = 1.0;
+
+                    // Count processed shapes and swap tools every N
+                    processedShapeCount++;
+                    if (processedShapeCount % TOOL_SWAP_EVERY === 0) {
+                        triggerToolSwap();
+                    }
+                }
+            }
+        }
+
+        // --- Tool Bank & Animation ---
+        function computeToolBankLayout() {
+            const dpr = window.devicePixelRatio || 1;
+            const w = canvas.width / dpr;
+            const h = canvas.height / dpr;
+
+            // Mirror the geometry used when drawing the bank so pills are fully inside
+            const bankLeft = w * 0.08;
+            const bankTop = h * 0.1;
+            const bankWidth = w * 0.84;
+            const bankHeight = TOOL_ICON_HEIGHT + 20;
+
+            const gap = 12;
+            const horizontalPadding = 10; // matches inner padding used visually
+
+            // Vertically center pills within the bank and place first pill fully inside
+            const bankY = bankTop + bankHeight / 2;
+            const firstCenterX = bankLeft + horizontalPadding + (TOOL_ICON_WIDTH / 2);
+
+            tools.forEach((tool, index) => {
+                const homeX = firstCenterX + index * (TOOL_ICON_WIDTH + gap);
+                const homeY = bankY;
+                tool.homeX = homeX;
+                tool.homeY = homeY;
+                // Initialize positions if not set (first run)
+                if (tool.x === undefined) {
+                    tool.x = homeX;
+                    tool.y = homeY;
+                }
+                tool.targetX = homeX;
+                tool.targetY = homeY;
+                tool.inSlot = false;
+            });
+        }
+
+        function triggerToolSwap() {
+            const prevIndex = activeToolIndex;
+            activeToolIndex = (activeToolIndex + 1) % tools.length;
+            // Previous tool goes home
+            tools[prevIndex].targetX = tools[prevIndex].homeX;
+            tools[prevIndex].targetY = tools[prevIndex].homeY;
+            tools[prevIndex].inSlot = false;
+            // New active tool will be guided to slot in updateAndDrawTools (target set each frame)
+        }
+
+        function updateAndDrawTools(processor, w, h) {
+            // Determine slot center inside processor display window
+            const slotX = processor.x + processor.width / 2;
+            const slotY = processor.y + 30; // center of the display window
+
+            // Update targets: active tool -> slot; others -> home
+            tools.forEach((tool, index) => {
+                if (index === activeToolIndex) {
+                    tool.targetX = slotX;
+                    tool.targetY = slotY;
+                    tool.inSlot = true;
+                } else {
+                    tool.targetX = tool.homeX;
+                    tool.targetY = tool.homeY;
+                    tool.inSlot = false;
+                }
+
+                // Move towards target
+                const dx = tool.targetX - tool.x;
+                const dy = tool.targetY - tool.y;
+                const dist = Math.hypot(dx, dy);
+                if (dist > 0.5) {
+                    const step = Math.min(TOOL_ANIM_SPEED, dist);
+                    tool.x += (dx / dist) * step;
+                    tool.y += (dy / dist) * step;
+                } else {
+                    tool.x = tool.targetX;
+                    tool.y = tool.targetY;
+                }
+            });
+
+            // Draw bank background
+            const bankTop = h * 0.1;
+            const bankHeight = TOOL_ICON_HEIGHT + 20;
+            ctx.fillStyle = 'rgba(31, 41, 55, 0.5)'; // gray-800 with alpha
+            ctx.fillRect(w * 0.08, bankTop, w * 0.84, bankHeight);
+            ctx.strokeStyle = '#374151';
+            ctx.strokeRect(w * 0.08, bankTop, w * 0.84, bankHeight);
+
+            // Label above the bank
+            ctx.fillStyle = '#f9fafb';
+            ctx.font = 'bold 12px "Inter"';
+            ctx.textAlign = 'center';
+            ctx.fillText('Available Callbacks', w / 2, bankTop - 8);
+
+            // Draw each tool (as pill buttons)
+            tools.forEach((tool, index) => {
+                const x = tool.x - TOOL_ICON_WIDTH / 2;
+                const y = tool.y - TOOL_ICON_HEIGHT / 2;
+
+                // Button
+                ctx.fillStyle = '#111827';
+                ctx.fillRect(x, y, TOOL_ICON_WIDTH, TOOL_ICON_HEIGHT);
+                ctx.strokeStyle = index === activeToolIndex ? tool.color : '#4b5563';
+                ctx.lineWidth = index === activeToolIndex ? 2.5 : 1.5;
+                ctx.strokeRect(x, y, TOOL_ICON_WIDTH, TOOL_ICON_HEIGHT);
+
+                // Icon chip
+                ctx.fillStyle = tool.color;
+                ctx.fillRect(x + 6, y + 6, 16, TOOL_ICON_HEIGHT - 12);
+
+                // Label
+                ctx.fillStyle = '#e5e7eb';
+                ctx.font = '12px "Roboto Mono"';
+                ctx.textAlign = 'left';
+                ctx.fillText(tool.name, x + 28, y + TOOL_ICON_HEIGHT - 9);
+            });
+        }
+        
+        // --- Event Listeners ---
+        window.addEventListener('resize', setup);
+        
+        // --- Initial Load ---
+        document.addEventListener('DOMContentLoaded', setup);
+    </script>
+
+</body>
+</html>

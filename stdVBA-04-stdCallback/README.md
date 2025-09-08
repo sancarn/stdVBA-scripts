@@ -256,8 +256,5 @@ Since stdCallback introduces some complex runtime behavior, users may struggle t
 
 ### TODO
 
-- "Instead we can use `stdCallback` to define callable objects from existing functions." - Maybe we should have an animation here?
-- "however stdCallback, allows us to encapsulate functions into callable objects, making it possible to pass them as parameters." - Maybe use the same animation as above?
-- `s3Main` cycle should maybe be a bit longer
-- "Join us next time to see how this code could be improved further with `stdLambda`." - Maybe we should have an animation here?
-- Is it even worthwhile having the `s6Glossary` section? It might be better to just link to [stdVBA-docs.github.io](https://sancarn.github.io/stdVBA-docs/)...
+0:28 & 1:49 - could have an animation for encapsulation of functions into objects with stdCallback...
+3:20 - The clip should have faded to black

@@ -3,15 +3,15 @@
   "timeEvents": [
     {
       "name": "s1BeforeTitle",
-      "targetTime": 0.6355307262569836
+      "targetTime": 0
     },
     {
       "name": "s1FirstClassFunctions",
-      "targetTime": 12.34460614592514
+      "targetTime": 15.197339982991398
     },
     {
       "name": "s1AfterTitle",
-      "targetTime": 23.98987276674432
+      "targetTime": 27.129313280248102
     }
   ],
   "seed": 2075973548

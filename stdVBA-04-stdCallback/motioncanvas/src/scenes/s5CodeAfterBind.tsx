@@ -101,11 +101,11 @@ Sub MainRedTriangles()
   set shapes = FilterShapes(shapes, stdCallback.CreateFromModule("","${replace(
     "isRed",
     "isColor"
-  )}"))${insert('.bind("red")')}
+  )}")${insert('.bind("red")')})
   set shapes = FilterShapes(shapes, stdCallback.CreateFromModule("","${replace(
     "isTriangle",
     "isType"
-  )}"))${insert('.bind("triangle")')}
+  )}")${insert('.bind("triangle")')})
 End Sub`,
     main.fontSize(34, 2)
   );
